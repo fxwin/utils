@@ -1,0 +1,28 @@
+# Runs `uv sync` whenever HEAD changes in repository (e.g. branch/commit checkout, rebases + merges
+# Requires 3 hooks:
+# 
+# .git/hooks/post-checkout
+# =====
+#!/bin/sh
+set -eu
+old="$1"
+new="$2"
+# Only if HEAD changed (ignore path-only checkout)
+[ "$old" = "$new" ] && exit 0
+uv sync
+# =====
+
+# .git/hooks/post-merge
+# =====
+#!/bin/sh
+set -eu
+uv sync
+# =====
+
+# .git/hooks/post-rewrite
+# =====
+#!/bin/sh
+set -eu
+[ "${1:-}" = "rebase" ] || exit 0
+uv sync
+# =====
