@@ -1,0 +1,53 @@
+#!/usr/bin/env sh
+# Verifies that the commit message starts with a ticket number in the format #<ticket>.
+# Copy to .git/hooks/ and rename to commit-msg to enable
+
+set -eu
+
+msg_file="$1"
+
+if [ ! -f "$msg_file" ]; then
+  exit 0
+fi
+
+first_content_line_number="$(awk '
+  /^[[:space:]]*$/ { next }
+  { print NR; exit }
+' "$msg_file")"
+
+if [ -z "$first_content_line_number" ]; then
+  exit 0
+fi
+
+first_content_line="$(sed -n "${first_content_line_number}p" "$msg_file")"
+
+if printf '%s' "$first_content_line" | grep -Eq '^#[0-9]+'; then
+  exit 0
+fi
+
+if [ ! -t 0 ] && [ ! -e /dev/tty ]; then
+  echo "Commit message must start with #<ticket>. Non-interactive session cannot prompt." >&2
+  exit 1
+fi
+
+echo "Commit message must start with #<ticket>." > /dev/tty
+printf "Enter ticket number (digits only, without #): " > /dev/tty
+
+ticket=""
+IFS= read -r ticket < /dev/tty || true
+ticket="${ticket#\#}"
+
+if ! printf '%s' "$ticket" | grep -Eq '^[0-9]+$'; then
+  echo "Invalid ticket number. Commit aborted." >&2
+  exit 1
+fi
+
+tmp_file="${msg_file}.tmp"
+awk -v target="$first_content_line_number" -v prefix="#${ticket} " '
+  NR == target { $0 = prefix $0 }
+  { print }
+' "$msg_file" > "$tmp_file"
+
+mv "$tmp_file" "$msg_file"
+
+exit 0
