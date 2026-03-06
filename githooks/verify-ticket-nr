@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Verifies that the commit message starts with a ticket number in the format #<ticket>.
+# Verifies that the commit message starts with a ticket number in the format #<digits>.
 # Copy to .git/hooks/ and rename to commit-msg to enable
 
 set -eu
@@ -21,7 +21,7 @@ fi
 
 first_content_line="$(sed -n "${first_content_line_number}p" "$msg_file")"
 
-if printf '%s' "$first_content_line" | grep -Eq '^#[0-9]+'; then
+if printf '%s' "$first_content_line" | grep -Eq '^#[0-9]+($|[[:space:]])'; then
   exit 0
 fi
 

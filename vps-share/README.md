@@ -5,7 +5,7 @@ share video.mp4
 ```
 by copying the video into a directory on my VPS that is exposed by nginx, and copying an URL to said video into my clipboard. Also available as an entry in the "Send to" context menu.
 
-Together with the [llmpeg](../llmpeg/README.md) script, i can even do:
+Together with the [llmpeg](../llmpeg/) script, i can even do:
 ```
 llmpeg "Crop this video to 30 seconds starting at 12 seconds" video.mp4 | share
 ``` 
@@ -27,7 +27,7 @@ This requires a bit of setting up, but it's not too difficult. Note that the sha
 ### VPS Setup:
 1. Choose a directory to put the files in - in my case that's `/srv/videos/public`
 2. Choose a base URL to serve these under - in my case that's `https://videos.fxwin.net/raw`
-3. Set up nginx to expose the directory from step 1 under the URL in step 2. In my case, this looks something like this (With some extra stuff to support https and to enable live playback in the browser, e.g. without ``add_header Content-Disposition "inline" always;`` opening a link simply downloads the video instead. Consult your favorite LLM on how to set up certificate renewals):
+3. Set up nginx to expose the directory from step 1 under the URL in step 2. In my case, this looks something like this (With some extra stuff to support https and to enable live playback in the browser, e.g. without ``add_header Content-Disposition "inline" always;`` opening a link simply downloads the video instead. Consult your favorite LLM on how to set up certificate, i used certbot + letsencrypt). If you want, you can add additional file types to serve them here, my main use case is videos so `.mp4` it is):
     ```nginx
     server {
 
@@ -55,7 +55,7 @@ This requires a bit of setting up, but it's not too difficult. Note that the sha
         add_header Accept-Ranges bytes always;
     }
     ```
-4. I recommend setting up a file browser that lets you access/delete files after uploading without having to `ssh` into your VPS, I use [File Browser](https://github.com/filebrowser/filebrowser) which is super easy to self host on the same VPS.
+4. I recommend setting up a file browser that lets you access/delete/rename files after uploading without having to `ssh` into your VPS, I use [File Browser](https://github.com/filebrowser/filebrowser) which is super easy to self host on the same VPS.
 
 ### Local/Windows Setup:
 1. Copy [video-share.ps1](video-share.ps1) and [video-share.vbs](video-share.vbs) to `C:\Tools`

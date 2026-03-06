@@ -7,10 +7,10 @@ Flags:
 - `-Smart` uses `gpt-5-mini` instead of `gpt-4.1`. Significantly slower but more reliably with complex queries.
 - `-DryRun` just provides the command, but doesn't execute it.
 ## Why?
-Since ~GPT 4, one of my recurring use cases (next to generating + understanding regex) for ChatGPT was to write one-off ``ffmpeg`` commands to crop short video clips. This script streamlines this + integrates nicely with the [share](../vps-share/README.md)-command to process + upload a given video to get a shareable link within seconds.
+Since ~GPT 4, one of my recurring use cases (next to generating + understanding regex) for ChatGPT was to write one-off ``ffmpeg`` commands to crop short video clips. This script streamlines this + integrates nicely with the [share](../vps-share/)-command to process + upload a given video to get a shareable link within seconds.
 
 ## Setup
-Note that this is a powershell script so it is Windows only, but any frontier LLM should be able to 1 shot a port to the scripting language of your choice. I just used powershell because I made this at the same time as [share](../vps-share/README.md), where i use Windows specific features.
+Note that this is a powershell script so it is Windows only, but any frontier LLM should be able to oneshot a port to the scripting language of your choice. I just used powershell because I made this at the same time as [share](../vps-share/), where i use Windows specific features.
 ### Prerequisites:
 - An [Openai](https://developers.openai.com/) API key stored in `OPENAI_API_KEY`
 - A working [ffmpeg](https://www.ffmpeg.org/download.html) installation
