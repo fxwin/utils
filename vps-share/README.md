@@ -31,26 +31,26 @@ This requires a bit of setting up, but it's not too difficult. Note that the sha
     ```nginx
     server {
 
-    listen 443 ssl http2;
-    listen [::]:443 ssl http2;
-    server_name videos.fxwin.net;
-    client_max_body_size 2G;
+        listen 443 ssl http2;
+        listen [::]:443 ssl http2;
+        server_name videos.fxwin.net;
+        client_max_body_size 2G;
 
-    ssl_certificate     /etc/letsencrypt/live/videos.fxwin.net/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/videos.fxwin.net/privkey.pem;
+        ssl_certificate     /etc/letsencrypt/live/videos.fxwin.net/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/videos.fxwin.net/privkey.pem;
 
 
-    location ^~ /raw/ {
-        alias /srv/videos/public/;
-        autoindex off;
+        location ^~ /raw/ {
+            alias /srv/videos/public/;
+            autoindex off;
 
-        # prefer inline display; browser decides
-        add_header Content-Disposition "inline" always;
+            # prefer inline display; browser decides
+            add_header Content-Disposition "inline" always;
 
-        # seeking/streaming
-        add_header Accept-Ranges bytes always;
+            # seeking/streaming
+            add_header Accept-Ranges bytes always;
+        }
     }
-}
     ```
 4. I recommend setting up a file browser that lets you access/delete/rename files after uploading without having to `ssh` into your VPS, I use [File Browser](https://github.com/filebrowser/filebrowser) which is super easy to self host on the same VPS.
 
