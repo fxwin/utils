@@ -1,5 +1,5 @@
 ## What does this do?
-In short: it uploads videos and provides me with a shareable link via 
+In short: it uploads files/videos and provides me with a shareable link via 
 ``` bash
 share video.mp4
 ```
@@ -19,7 +19,7 @@ I play videogames, and sometimes record gameplay clips using e.g. NVIDIA Shadowp
 That's nice, but: videos usually get deleted after a while unless you pay, and the linked video page might still contain ads if (god beware) the person you send it to doesn't use an ad blocker. That's also still too many clicks for me.
 
 ## Setup
-This requires a bit of setting up, but it's not too difficult. Note that the share script itself is powershell and hence only works on Windows due to the BalloonTip API used for popup notification once upload finishes.
+This requires a bit of setting up, but it's not too difficult. Note that the share script itself is powershell and hence only works on Windows due to the success/error popup created.
 ### Prerequisites:
 - A VPS + registered domain pointing at said VPS (Should work with just IP, but it looks nicer with a proper domain)
 - A ssh profile that connects to your VPS
@@ -27,33 +27,30 @@ This requires a bit of setting up, but it's not too difficult. Note that the sha
 ### VPS Setup:
 1. Choose a directory to put the files in - in my case that's `/srv/videos/public`
 2. Choose a base URL to serve these under - in my case that's `https://videos.fxwin.net/raw`
-3. Set up nginx to expose the directory from step 1 under the URL in step 2. In my case, this looks something like this (With some extra stuff to support https and to enable live playback in the browser, e.g. without ``add_header Content-Disposition "inline" always;`` opening a link simply downloads the video instead. Consult your favorite LLM on how to set up certificate, i used certbot + letsencrypt). If you want, you can add additional file types to serve them here, my main use case is videos so `.mp4` it is):
+3. Set up nginx to expose the directory from step 1 under the URL in step 2. In my case, this looks something like this (With some extra stuff to support https and to enable live playback in the browser, e.g. without ``add_header Content-Disposition "inline" always;`` opening a link simply downloads the video instead. Consult your favorite LLM on how to set up certificate, i used certbot + letsencrypt):
     ```nginx
     server {
 
-        listen 443 ssl http2;
-        listen [::]:443 ssl http2;
-        server_name videos.fxwin.net;
-        client_max_body_size 2G;
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name videos.fxwin.net;
+    client_max_body_size 2G;
 
-        ssl_certificate     /etc/letsencrypt/live/videos.fxwin.net/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/videos.fxwin.net/privkey.pem;
+    ssl_certificate     /etc/letsencrypt/live/videos.fxwin.net/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/videos.fxwin.net/privkey.pem;
 
-        types { mp4 video/mp4; }
 
     location ^~ /raw/ {
         alias /srv/videos/public/;
         autoindex off;
 
-        # make sure mp4 is served/seekable
-        mp4;
-
-        types { mp4 video/mp4; }
-        default_type video/mp4;
-
+        # prefer inline display; browser decides
         add_header Content-Disposition "inline" always;
+
+        # seeking/streaming
         add_header Accept-Ranges bytes always;
     }
+}
     ```
 4. I recommend setting up a file browser that lets you access/delete/rename files after uploading without having to `ssh` into your VPS, I use [File Browser](https://github.com/filebrowser/filebrowser) which is super easy to self host on the same VPS.
 

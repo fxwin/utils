@@ -1,4 +1,4 @@
-# Runs `uv sync` whenever HEAD changes in repository (e.g. branch/commit checkout, rebases + merges
+# Runs `uv sync` whenever HEAD changes in repository (e.g. branch/commit checkout, rebases + merges)
 # Requires 3 hooks:
 # 
 # .git/hooks/post-checkout
