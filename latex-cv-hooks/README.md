@@ -1,6 +1,6 @@
 ## latex-cv automation
 
-This is my deployed LaTeX CV automation workflow with two output tracks:
+This is my LaTeX CV automation workflow with two output tracks:
 
 1. a full internal version (includes full address/contact details)
 2. a redacted public version (safe for website download)
