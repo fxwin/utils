@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+root_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+log_dir="$root_dir/build/redacted"
+mkdir -p "$log_dir"
+
+echo "publishing pdf files to website"
+echo "$(date -Iseconds) pre-push: start" >> "$log_dir/hook.log"
+
+if "$root_dir/scripts/build_redacted.sh" >/dev/null 2>&1; then
+  echo "$(date -Iseconds) pre-push: success" >> "$log_dir/hook.log"
+else
+  echo "$(date -Iseconds) pre-push: failure" >> "$log_dir/hook.log"
+  exit 1
+fi
