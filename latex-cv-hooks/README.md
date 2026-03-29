@@ -19,7 +19,7 @@ The goal is to keep both variants continuously up to date through git hooks, wit
 - [hooks/pre-push](hooks/pre-push): builds and publishes redacted PDFs
 - [scripts/build_full.sh](scripts/build_full.sh): full compile plus private publish
 - [scripts/build_redacted.sh](scripts/build_redacted.sh): redacted compile plus public publish
-- [scripts/redact_tex.py](scripts/redact_tex.py): switches class token from {resume} to a redacted class identical to resume, but with a redacted \printaddress call
+- [scripts/redact_tex.py](scripts/redact_tex.py): switches class token from `{resume}` to a redacted class identical to resume, but with a redacted `\printaddress` call
 
 Published output paths used by the deployed scripts:
 
