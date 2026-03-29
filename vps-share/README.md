@@ -40,7 +40,7 @@ sudo dnf install openssh-clients wl-clipboard kdialog libnotify
 ### VPS Setup:
 1. Choose a directory to put the files in - in my case that's `/srv/videos/public`
 2. Choose a base URL to serve these under - in my case that's `https://videos.fxwin.net/raw`
-3. Set up nginx to expose the directory from step 1 under the URL in step 2. In my case, this looks something like this (With some extra stuff to support https and to enable live playback in the browser, e.g. without ``add_header Content-Disposition "inline" always;`` opening a link simply downloads the video instead. Consult your favorite LLM on how to set up certificate, i used certbot + letsencrypt):
+3. Set up nginx to expose the directory from step 1 under the URL in step 2. In my case, this looks something like this (With some extra stuff to support https and to enable live playback in the browser, e.g. without ``add_header Content-Disposition "inline" always;`` opening a link simply downloads the video instead. Consult your favorite LLM on how to set up certificates, i used certbot + letsencrypt):
     ```nginx
     server {
 
