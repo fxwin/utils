@@ -37,18 +37,18 @@ Published output paths used by the deployed scripts:
 ## Setup steps
 
 From inside a CV repository (for example /home/latex-cv):
-
+```bash
 cp -r /path/to/utils/latex-cv-hooks/{hooks,scripts} .
 chmod +x hooks/pre-commit hooks/pre-push scripts/build_full.sh scripts/build_redacted.sh scripts/redact_tex.py
 cp hooks/pre-commit .git/hooks/pre-commit
 cp hooks/pre-push .git/hooks/pre-push
 chmod +x .git/hooks/pre-commit .git/hooks/pre-push
-
+```
 ## Validation commands
-
+```bash
 scripts/build_full.sh
 scripts/build_redacted.sh
-
+```
 Then check:
 
 - full PDFs in /srv/videos/private/cv
