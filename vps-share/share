@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if command -v video-share >/dev/null 2>&1; then
+  exec video-share "$@"
+fi
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+exec "${SCRIPT_DIR}/video-share" "$@"

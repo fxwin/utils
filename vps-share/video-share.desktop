@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+MimeType=video/*;
+Actions=shareViaVps;
+
+[Desktop Action shareViaVps]
+Name=Share via VPS
+Icon=network-server
+Exec=/home/fxwin/.local/bin/video-share %f
