@@ -29,7 +29,7 @@ Published output paths used by the deployed scripts:
 ## Assumptions
 
 - The CV repository contains at least english.tex and german.tex
-- documentclass uses {resume}
+- documentclass uses {resume} (See also [resume.cls](resume.cls))
 - latexmk is installed
 - python3 is installed
 - publish directories are writable by the executing user
