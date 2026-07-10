@@ -48,13 +48,13 @@ scripts/build_redacted.sh
 ```
 Then check:
 
-- full PDFs in the private output directory configured in `scripts/build_full.sh`
-- redacted PDFs in the public output directory configured in `scripts/build_redacted.sh`
-- `build/redacted/hook.log` after pushes
+- full PDFs in the private output directory configured in [scripts/build_full.sh](scripts/build_full.sh)
+- redacted PDFs in the public output directory configured in [scripts/build_redacted.sh](scripts/build_redacted.sh)
+- [build/redacted/hook.log](build/redacted/hook.log) after pushes
 
 ## Notes
 
 - The redaction script does not mutate source tex files.
 - It writes temporary redacted tex/pdf files under build/redacted.
-- Edit the inline class content in `scripts/build_redacted.sh` to customize the public contact line.
-- Adjust the publish paths/filenames in `scripts/build_full.sh` and `scripts/build_redacted.sh` for your environment.
+- Edit the inline class content in [scripts/build_redacted.sh](scripts/build_redacted.sh) to customize the public contact line.
+- Adjust the publish paths/filenames in [scripts/build_full.sh](scripts/build_full.sh) and [scripts/build_redacted.sh](scripts/build_redacted.sh) for your environment.
