@@ -21,10 +21,7 @@ The goal is to keep both variants continuously up to date through git hooks, wit
 - [scripts/build_redacted.sh](scripts/build_redacted.sh): redacted compile plus public publish
 - [scripts/redact_tex.py](scripts/redact_tex.py): switches class token from `{resume}` to a redacted class identical to resume, but with a redacted `\printaddress` call
 
-Published output paths used by the deployed scripts:
-
-- redacted/public: /var/www/blog/cv-felix-winterhalter-en.pdf and /var/www/blog/cv-felix-winterhalter-de.pdf
-- full/private: /srv/videos/private/cv/cv-felix-winterhalter-en.pdf and /srv/videos/private/cv/cv-felix-winterhalter-de.pdf
+The included scripts contain example publish paths and filenames. You will likely want to customize those for your own machine/server setup.
 
 ## Assumptions
 
@@ -51,12 +48,13 @@ scripts/build_redacted.sh
 ```
 Then check:
 
-- full PDFs in /srv/videos/private/cv
-- redacted PDFs in /var/www/blog
-- build/redacted/hook.log after pushes
+- full PDFs in the private output directory configured in `scripts/build_full.sh`
+- redacted PDFs in the public output directory configured in `scripts/build_redacted.sh`
+- `build/redacted/hook.log` after pushes
 
 ## Notes
 
 - The redaction script does not mutate source tex files.
 - It writes temporary redacted tex/pdf files under build/redacted.
-- Edit the inline class content in scripts/build_redacted.sh to customize the public contact line.
+- Edit the inline class content in `scripts/build_redacted.sh` to customize the public contact line.
+- Adjust the publish paths/filenames in `scripts/build_full.sh` and `scripts/build_redacted.sh` for your environment.

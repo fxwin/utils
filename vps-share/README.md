@@ -23,7 +23,7 @@ I play videogames, and sometimes record gameplay clips using e.g. NVIDIA Shadowp
 That's nice, but: videos usually get deleted after a while unless you pay, and the linked video page might still contain ads if (god beware) the person you send it to doesn't use an ad blocker. That's also still too many clicks for me.
 
 ## Setup
-This requires a bit of setting up, but it's not too difficult. Note that the share script itself is powershell and hence only works on Windows due to the success/error popup created.
+This requires a bit of setup, but it's straightforward. These are Linux bash scripts.
 ### Prerequisites:
 - A VPS + registered domain pointing at said VPS (Should work with just IP, but it looks nicer with a proper domain)
 - A ssh profile that connects to your VPS
@@ -72,10 +72,8 @@ sudo dnf install openssh-clients wl-clipboard kdialog libnotify
 
    ```bash
    mkdir -p ~/.local/bin
-   cp video-share ~/.local/bin/video-share
-   cp share ~/.local/bin/share
-   chmod +x ~/.local/bin/video-share
-   chmod +x ~/.local/bin/share
+   install -m 755 video-share.sh ~/.local/bin/video-share
+   install -m 755 share.sh ~/.local/bin/share
    ```
 
 2. Add config to `~/.zshrc`:
@@ -98,8 +96,8 @@ sudo dnf install openssh-clients wl-clipboard kdialog libnotify
 You can install the service menu template included in this folder:
 
 ```bash
-chmod +x install-dolphin-service-menu
-./install-dolphin-service-menu
+chmod +x install-dolphin-service-menu.sh
+./install-dolphin-service-menu.sh
 ```
 
 This installs to both paths:

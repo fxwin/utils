@@ -6,4 +6,4 @@ if command -v video-share >/dev/null 2>&1; then
 fi
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-exec "${SCRIPT_DIR}/video-share" "$@"
+exec "${SCRIPT_DIR}/video-share.sh" "$@"

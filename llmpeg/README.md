@@ -30,12 +30,11 @@ sudo dnf install ffmpeg curl jq
 ```
 
 ### Install
-1. Copy [llmpeg](llmpeg) into your user-local bin and make it executable:
+1. Install the script into your user-local bin:
 
     ```bash
     mkdir -p ~/.local/bin
-    cp llmpeg ~/.local/bin/llmpeg
-    chmod +x ~/.local/bin/llmpeg
+    install -m 755 llmpeg.sh ~/.local/bin/llmpeg
     ```
 
 2. Add this to `~/.zshrc` (your default shell):
