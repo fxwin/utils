@@ -1,0 +1,3 @@
+[submodule "pi/quota-display"]
+	path = pi/quota-display
+	url = https://github.com/fxwin/quota-display.git
