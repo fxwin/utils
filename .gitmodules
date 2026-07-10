@@ -1,4 +1,4 @@
-[submodule "pi"]
-	path = pi
+[submodule "quota-display"]
+	path = quota-display
 	url = https://github.com/fxwin/quota-display.git
 	branch = main
