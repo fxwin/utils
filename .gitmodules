@@ -1,6 +1,6 @@
-[submodule "quota-display"]
-	path = quota-display
-	url = https://github.com/fxwin/quota-display.git
+[submodule "pi-quota-display"]
+	path = pi-quota-display
+	url = https://github.com/fxwin/pi-quota-display.git
 	branch = main
 [submodule "pi-web-search"]
 	path = pi-web-search
