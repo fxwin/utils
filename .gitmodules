@@ -2,3 +2,7 @@
 	path = quota-display
 	url = https://github.com/fxwin/quota-display.git
 	branch = main
+[submodule "pi-openai-web-search"]
+	path = pi-openai-web-search
+	url = https://github.com/fxwin/pi-openai-web-search.git
+	branch = main
